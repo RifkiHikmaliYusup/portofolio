@@ -1,0 +1,1651 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#08080a" />
+    <meta
+      name="description"
+      content="Portofolio Rifki Hikmali Yusup, pengembang web yang berfokus pada solusi digital yang berguna." />
+    <title>Rifki Hikmali Yusup — Web Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Onest:wght@400;500;600&display=swap"
+      rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        font-size: 16px;
+        background: #08080a;
+        scroll-behavior: smooth;
+      }
+      @media (max-width: 1920px) {
+        html {
+          font-size: 0.833333vw;
+        }
+      }
+      @media (max-width: 1440px) {
+        html {
+          font-size: 1.111111vw;
+        }
+      }
+      @media (max-width: 1024px) {
+        html {
+          font-size: 1.5625vw;
+        }
+      }
+      @media (max-width: 640px) {
+        html {
+          font-size: 4.444444vw;
+        }
+      }
+      :root {
+        --background: #08080a;
+        --foreground: #f3f1ea;
+        --surface: #111114;
+        --surface-2: #17171b;
+        --muted: #807f78;
+        --line: rgba(243, 241, 234, 0.1);
+        --line-strong: rgba(243, 241, 234, 0.22);
+        --accent: #ff3b1d;
+        --accent-2: #ff6a3d;
+        --gutter: 2.5rem;
+        --section: 9rem;
+        --font-display: "Anton", Impact, sans-serif;
+        --font-sans: "Onest", sans-serif;
+      }
+      @media (max-width: 640px) {
+        :root {
+          --gutter: 16px;
+          --section: 6rem;
+        }
+      }
+      html,
+      body {
+        background: var(--background);
+      }
+      body {
+        color: var(--foreground);
+        font-family: var(--font-sans);
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        overflow-x: hidden;
+      }
+      ::selection {
+        background: var(--accent);
+        color: var(--background);
+      }
+      img,
+      video {
+        display: block;
+        max-width: 100%;
+      }
+      ul {
+        list-style: none;
+      }
+      a,
+      button {
+        color: inherit;
+        font: inherit;
+      }
+      a {
+        text-decoration: none;
+      }
+      button {
+        appearance: none;
+        border: 0;
+        background: none;
+        cursor: pointer;
+      }
+      main {
+        position: relative;
+        width: 100%;
+        overflow-x: clip;
+      }
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: var(--muted);
+        font-size: 0.8125rem;
+        font-weight: 500;
+        line-height: 1.2;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+      .eyebrow::before {
+        content: "";
+        width: 0.5rem;
+        height: 0.5rem;
+        flex: 0 0 auto;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+      .display-heading {
+        font-family: var(--font-display);
+        font-size: 3.25rem;
+        font-weight: 400;
+        line-height: 1;
+        letter-spacing: -0.01em;
+        text-transform: uppercase;
+      }
+      .section-shell {
+        padding: var(--section) var(--gutter);
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(2rem);
+        transition:
+          opacity 560ms cubic-bezier(0.16, 1, 0.3, 1),
+          transform 560ms cubic-bezier(0.16, 1, 0.3, 1);
+        transition-delay: var(--delay, 0ms);
+      }
+      .reveal.in-view {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .line-mask {
+        display: block;
+        overflow: hidden;
+        padding-bottom: 0.06em;
+      }
+      .line-mask > span {
+        display: block;
+        transform: translateY(110%);
+        opacity: 0;
+        transition:
+          transform 900ms cubic-bezier(0.16, 1, 0.3, 1),
+          opacity 700ms ease;
+        transition-delay: var(--delay, 0ms);
+      }
+      .in-view .line-mask > span {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .preloader {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        padding: var(--gutter);
+        background: var(--background);
+        transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .preloader.done {
+        transform: translateY(-100%);
+        pointer-events: none;
+      }
+      .loader-content {
+        display: flex;
+        width: 100%;
+        align-items: flex-end;
+        justify-content: space-between;
+        transition: opacity 300ms ease;
+      }
+      .preloader.fading .loader-content {
+        opacity: 0;
+      }
+      .loader-brand {
+        font: 400 1.75rem/1 var(--font-display);
+        letter-spacing: -0.01em;
+        text-transform: uppercase;
+      }
+      .loader-count {
+        font: 400 7.5rem/1 var(--font-display);
+        font-variant-numeric: tabular-nums;
+      }
+      .loader-count span {
+        color: var(--accent);
+      }
+      .site-header {
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 50;
+        pointer-events: none;
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.5rem var(--gutter);
+        pointer-events: auto;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .monogram {
+        display: grid;
+        width: 2.5rem;
+        height: 2.5rem;
+        place-items: center;
+        border: 1px solid var(--line-strong);
+        border-radius: 50%;
+        font-size: 0.875rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+      .brand-name {
+        display: none;
+        color: var(--muted);
+        font-size: 0.8125rem;
+        font-weight: 500;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+      .desktop-nav {
+        display: none;
+        align-items: center;
+        gap: 2.5rem;
+      }
+      .desktop-nav a {
+        position: relative;
+        color: var(--muted);
+        font-size: 0.8125rem;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        transition: color 220ms ease;
+      }
+      .desktop-nav a::after {
+        position: absolute;
+        right: 0;
+        bottom: -0.4rem;
+        left: 0;
+        height: 1px;
+        background: var(--accent);
+        content: "";
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 250ms ease;
+      }
+      .desktop-nav a:hover {
+        color: var(--foreground);
+      }
+      .desktop-nav a:hover::after {
+        transform: scaleX(1);
+      }
+      .menu-toggle {
+        position: relative;
+        z-index: 52;
+        display: flex;
+        width: 2.5rem;
+        height: 2.5rem;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.375rem;
+      }
+      .menu-toggle span {
+        width: 1.5rem;
+        height: 2px;
+        background: var(--foreground);
+        transition:
+          transform 300ms ease,
+          opacity 200ms ease;
+      }
+      .menu-toggle[aria-expanded="true"] span:first-child {
+        transform: translateY(0.25rem) rotate(45deg);
+      }
+      .menu-toggle[aria-expanded="true"] span:nth-child(2) {
+        opacity: 0;
+      }
+      .menu-toggle[aria-expanded="true"] span:last-child {
+        transform: translateY(-0.25rem) rotate(-45deg);
+      }
+      .mobile-menu {
+        position: fixed;
+        inset: 0;
+        z-index: 51;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-inline: var(--gutter);
+        background: var(--background);
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 450ms ease-out,
+          visibility 450ms;
+      }
+      .mobile-menu.open {
+        opacity: 1;
+        visibility: visible;
+      }
+      .mobile-menu ul {
+        display: grid;
+        gap: 1rem;
+        width: min(100%, 30rem);
+      }
+      .mobile-menu a {
+        display: block;
+        font: 400 3.25rem/1 var(--font-display);
+        letter-spacing: -0.01em;
+        text-transform: uppercase;
+        transform: translateY(2rem);
+        opacity: 0;
+        transition:
+          transform 420ms cubic-bezier(0.16, 1, 0.3, 1),
+          opacity 420ms ease;
+        transition-delay: var(--delay, 0ms);
+      }
+      .mobile-menu.open a {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      .mobile-menu a:hover {
+        color: var(--accent);
+      }
+
+      .hero {
+        position: relative;
+        display: flex;
+        min-height: 100svh;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .hero-top {
+        position: relative;
+        z-index: 30;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 7rem var(--gutter) 0;
+      }
+      .hero-roles {
+        font: 400 1.75rem/1.05 var(--font-display);
+        letter-spacing: -0.01em;
+        text-transform: uppercase;
+      }
+      .hero-roles span {
+        display: block;
+        overflow: hidden;
+      }
+      .hero-roles span i {
+        display: block;
+        font-style: normal;
+        transform: translateY(110%);
+        opacity: 0;
+        transition:
+          transform 760ms cubic-bezier(0.16, 1, 0.3, 1),
+          opacity 600ms ease;
+        transition-delay: var(--delay, 0ms);
+      }
+      .hero.started .hero-roles span i {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      .hero-description {
+        max-width: 26rem;
+        color: var(--muted);
+        font-size: 1.0625rem;
+        line-height: 1.6;
+        opacity: 0;
+        transform: translateY(1rem);
+        transition:
+          opacity 520ms cubic-bezier(0.16, 1, 0.3, 1),
+          transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .hero.started .hero-description {
+        opacity: 1;
+        transform: none;
+      }
+      .hero-name {
+        position: absolute;
+        z-index: 10;
+        inset-inline: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: var(--accent);
+        font: 400 13rem/0.86 var(--font-display);
+        letter-spacing: -0.01em;
+        text-transform: uppercase;
+        transform: translateY(6%);
+      }
+      .hero-name-line {
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      .hero-name-line span {
+        display: inline-block;
+        transform: translateY(110%);
+        opacity: 0;
+        transition:
+          transform 900ms cubic-bezier(0.16, 1, 0.3, 1),
+          opacity 700ms ease;
+        transition-delay: var(--delay, 0ms);
+      }
+      .hero.started .hero-name-line span {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      .hero-portrait {
+        position: absolute;
+        z-index: 20;
+        bottom: 0;
+        left: 50%;
+        width: 80vw;
+        height: 68vh;
+        max-width: none;
+        object-fit: contain;
+        object-position: center bottom;
+        transform: translateX(-50%);
+        filter: grayscale(1) contrast(1.08) brightness(0.88)
+          drop-shadow(0 1rem 1.5rem rgba(0, 0, 0, 0.28));
+        -webkit-mask-image: radial-gradient(
+          ellipse 72% 72% at 50% 48%,
+          #000 57%,
+          transparent 100%
+        );
+        mask-image: radial-gradient(
+          ellipse 72% 72% at 50% 48%,
+          #000 57%,
+          transparent 100%
+        );
+      }
+      .hero-gradient {
+        position: absolute;
+        z-index: 21;
+        inset-inline: 0;
+        bottom: 0;
+        height: 26vh;
+        background: linear-gradient(to bottom, transparent, #08080a);
+        pointer-events: none;
+      }
+      .scroll-cue {
+        position: absolute;
+        z-index: 30;
+        bottom: 2rem;
+        left: var(--gutter);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: var(--muted);
+        font-size: 0.8125rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        opacity: 0;
+        transition: opacity 500ms ease;
+      }
+      .hero.started .scroll-cue {
+        opacity: 1;
+      }
+      .scroll-cue::before {
+        width: 1px;
+        height: 2.5rem;
+        background: var(--accent);
+        content: "";
+      }
+      .marquee {
+        overflow: hidden;
+        border-block: 1px solid var(--line);
+        padding-block: 2rem;
+      }
+      .marquee-track {
+        display: flex;
+        width: max-content;
+        animation: marquee 22s linear infinite;
+      }
+      .marquee-group {
+        display: flex;
+        flex: 0 0 auto;
+        align-items: center;
+      }
+      .marquee-word {
+        white-space: nowrap;
+        font: 400 3.25rem/1 var(--font-display);
+        letter-spacing: -0.01em;
+        text-transform: uppercase;
+      }
+      .marquee-dot {
+        width: 0.625rem;
+        height: 0.625rem;
+        flex: 0 0 auto;
+        margin-inline: 2rem;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+      @keyframes marquee {
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      .story-grid,
+      .voices-grid,
+      .footer-grid {
+        display: grid;
+        gap: 3rem;
+      }
+      .section-title {
+        max-width: 16ch;
+        margin-top: 1.5rem;
+        font: 400 3.25rem/0.95 var(--font-display);
+        letter-spacing: -0.01em;
+        text-transform: uppercase;
+      }
+      .story-copy {
+        max-width: 46ch;
+        margin-top: 2rem;
+        color: var(--muted);
+        font-size: 1.375rem;
+        line-height: 1.45;
+      }
+      .principles {
+        margin-top: 1rem;
+      }
+      .principle {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        column-gap: 1.5rem;
+        border-top: 1px solid var(--line);
+        padding: 2rem 0;
+      }
+      .principle:last-child {
+        border-bottom: 1px solid var(--line);
+      }
+      .principle-number {
+        color: var(--accent);
+        font-size: 1.25rem;
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+      }
+      .principle h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+      .principle p {
+        max-width: 44ch;
+        margin-top: 0.75rem;
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+      .section-header {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+      .section-count {
+        color: var(--muted);
+        font-size: 0.8125rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+      .venture-grid {
+        display: grid;
+        gap: 4rem var(--gutter);
+        margin-top: 4rem;
+      }
+      .venture-card {
+        transition: transform 620ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .venture-card:hover {
+        transform: translateY(-0.35rem);
+      }
+      .project-image {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 16/11;
+        background: radial-gradient(
+          130% 130% at 30% 15%,
+          var(--surface-2),
+          var(--background)
+        );
+      }
+      .project-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(1);
+        transition:
+          filter 500ms ease,
+          transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .venture-card:hover .project-image img {
+        filter: grayscale(0);
+        transform: scale(1.035);
+      }
+      .project-image::after {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          120% 120% at 50% 120%,
+          rgba(8, 8, 10, 0.7),
+          transparent 60%
+        );
+        content: "";
+        pointer-events: none;
+      }
+      .venture-meta {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+        border-top: 1px solid var(--line);
+        padding-top: 1.25rem;
+      }
+      .venture-meta h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        transition: color 340ms ease;
+      }
+      .venture-card:hover .venture-meta h3 {
+        color: var(--accent);
+      }
+      .venture-meta p {
+        max-width: 42ch;
+        margin-top: 0.5rem;
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+      .venture-year {
+        flex: 0 0 auto;
+        color: var(--muted);
+        font-size: 0.75rem;
+        letter-spacing: 0.18em;
+        text-align: right;
+        text-transform: uppercase;
+      }
+      .venture-category {
+        margin-top: 0.75rem;
+        color: var(--muted);
+        font-size: 0.75rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin-top: 4rem;
+        border-top: 1px solid var(--line);
+      }
+      .stat {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        border-bottom: 1px solid var(--line);
+        padding: 2.5rem 0;
+      }
+      .stat-value {
+        font: 400 7.5rem/1 var(--font-display);
+        letter-spacing: -0.01em;
+        transition: color 340ms ease;
+      }
+      .stat:hover .stat-value {
+        color: var(--accent);
+      }
+      .stat-label {
+        max-width: 20ch;
+        color: var(--muted);
+        font-size: 0.9375rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .skill-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 4rem;
+        border-top: 1px solid var(--line);
+      }
+      .skill-item {
+        display: flex;
+        min-height: 8rem;
+        align-items: center;
+        gap: 1rem;
+        border-bottom: 1px solid var(--line);
+        padding: 1.5rem 0;
+      }
+      .skill-item img {
+        width: 2.75rem;
+        height: 2.75rem;
+        object-fit: contain;
+      }
+      .skill-item span {
+        font: 400 1.75rem/1.1 var(--font-display);
+        text-transform: uppercase;
+      }
+      .capability-list {
+        margin-top: 4rem;
+      }
+      .capability {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: baseline;
+        gap: 1.25rem;
+        border-top: 1px solid var(--line);
+        padding: 1.75rem 0;
+        text-align: left;
+      }
+      .capability:last-child {
+        border-bottom: 1px solid var(--line);
+      }
+      .capability-index {
+        color: var(--muted);
+        font-size: 0.8125rem;
+        letter-spacing: 0.18em;
+        font-variant-numeric: tabular-nums;
+        transition: color 220ms ease;
+      }
+      .capability.active .capability-index {
+        color: var(--accent);
+      }
+      .capability-title {
+        color: var(--muted);
+        font-size: 1.75rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        transition: color 220ms ease;
+      }
+      .capability.active .capability-title,
+      .capability:hover .capability-title {
+        color: var(--foreground);
+      }
+      .capability-note {
+        display: block;
+        margin-top: 0.35rem;
+        color: var(--muted);
+        font-size: 0.8125rem;
+        font-weight: 400;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      .capability-detail {
+        display: grid;
+        align-content: start;
+        gap: 1.5rem;
+      }
+      .capability-detail p {
+        max-width: 36ch;
+        color: var(--foreground);
+        font-size: 1.75rem;
+        font-weight: 500;
+        line-height: 1.3;
+        letter-spacing: -0.01em;
+      }
+      .capability-detail small {
+        color: var(--muted);
+        font-size: 0.8125rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      .contact-footer {
+        padding: var(--section) var(--gutter) 0;
+      }
+      .contact-title {
+        max-width: 18ch;
+        margin-top: 1.5rem;
+        font: 400 5rem/0.95 var(--font-display);
+        letter-spacing: -0.01em;
+        text-transform: uppercase;
+      }
+      .contact-copy {
+        max-width: 44ch;
+        margin-top: 2rem;
+        color: var(--muted);
+        font-size: 1.375rem;
+        line-height: 1.45;
+      }
+      .email-link {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.75rem;
+        margin-top: 3rem;
+        font-size: 1.75rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        word-break: break-all;
+        transition:
+          color 340ms ease,
+          transform 340ms ease;
+      }
+      .email-link span {
+        color: var(--accent);
+      }
+      .email-link:hover {
+        color: var(--accent);
+        transform: translateX(0.875rem);
+      }
+      .footer-grid {
+        margin-top: var(--section);
+        border-top: 1px solid var(--line);
+        padding: 3rem 0;
+      }
+      .signature {
+        font: 400 3.25rem/1 var(--font-display);
+        letter-spacing: -0.01em;
+        text-transform: uppercase;
+      }
+      .footer-tagline {
+        margin-top: 1rem;
+        color: var(--muted);
+        font-size: 0.8125rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+      .social-list {
+        display: grid;
+        gap: 0.75rem;
+      }
+      .social-list a {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        color: var(--muted);
+        font-size: 1rem;
+        transition: color 220ms ease;
+      }
+      .social-list a::before {
+        width: 0;
+        height: 1px;
+        background: var(--accent);
+        content: "";
+        transition: width 220ms ease;
+      }
+      .social-list a:hover {
+        color: var(--foreground);
+      }
+      .social-list a:hover::before {
+        width: 1.5rem;
+      }
+      .copyright {
+        color: var(--muted);
+        font-size: 0.8125rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      @media (min-width: 640px) {
+        .brand-name {
+          display: inline;
+        }
+        .hero-name {
+          font-size: 28rem;
+        }
+        .hero-portrait {
+          width: 48vw;
+          height: 86vh;
+        }
+        .section-title {
+          font-size: 5rem;
+        }
+        .section-header {
+          flex-direction: row;
+          align-items: flex-end;
+          justify-content: space-between;
+        }
+        .venture-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .venture-card:nth-child(even) {
+          margin-top: 6rem;
+        }
+        .stats-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .stat:nth-child(even) {
+          border-left: 1px solid var(--line);
+          padding-left: 2rem;
+        }
+        .voices-grid {
+          grid-template-columns: 1fr auto;
+          align-items: start;
+        }
+        .capability-detail {
+          grid-template-columns: minmax(0, 1fr) 16rem;
+          align-items: start;
+        }
+        .footer-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .contact-title {
+          font-size: 7.5rem;
+        }
+        .email-link {
+          gap: 1rem;
+          font-size: 5rem;
+        }
+        .skill-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        .skill-item:nth-child(3n + 2),
+        .skill-item:nth-child(3n + 3) {
+          border-left: 1px solid var(--line);
+          padding-left: 2rem;
+        }
+      }
+      @media (min-width: 768px) {
+        .desktop-nav {
+          display: flex;
+        }
+        .menu-toggle,
+        .mobile-menu {
+          display: none;
+        }
+        .hero-portrait {
+          width: 44vw;
+        }
+        .hero-top {
+          flex-direction: row;
+          align-items: flex-start;
+          justify-content: space-between;
+          padding-top: 8rem;
+        }
+        .hero-roles {
+          font-size: 3.25rem;
+        }
+        .hero-description {
+          text-align: right;
+        }
+      }
+      @media (min-width: 1024px) {
+        .hero-portrait {
+          width: 36vw;
+        }
+        .story-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: var(--gutter);
+        }
+        .principles {
+          margin-top: 0.5rem;
+        }
+        .stats-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+        .stat {
+          padding-block: 3rem;
+        }
+        .stat:not(:nth-child(4n + 1)) {
+          border-left: 1px solid var(--line);
+          padding-left: 2rem;
+        }
+        .voices-grid {
+          grid-template-columns: repeat(12, minmax(0, 1fr));
+          gap: var(--gutter);
+        }
+        .capability-list {
+          grid-column: span 5;
+        }
+        .capability-detail {
+          grid-column: span 7;
+        }
+        .footer-grid {
+          grid-template-columns: repeat(12, minmax(0, 1fr));
+          gap: 2.5rem;
+        }
+        .footer-brand {
+          grid-column: span 6;
+        }
+        .footer-social {
+          grid-column: span 3;
+        }
+        .footer-copy {
+          grid-column: span 3;
+          text-align: right;
+        }
+      }
+      @media (max-width: 768px) {
+        .project-image img {
+          filter: none;
+        }
+      }
+      @media (min-width: 1024px) {
+        .skill-grid {
+          grid-template-columns: repeat(6, minmax(0, 1fr));
+        }
+        .skill-item {
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: space-between;
+          min-height: 12rem;
+          padding: 2rem 1rem;
+        }
+        .skill-item:nth-child(3n + 2),
+        .skill-item:nth-child(3n + 3) {
+          border-left: 0;
+          padding-left: 1rem;
+        }
+        .skill-item:not(:nth-child(6n + 1)) {
+          border-left: 1px solid var(--line);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+        .preloader {
+          display: none;
+        }
+        .reveal,
+        .line-mask > span,
+        .hero-roles span i,
+        .hero-name-line span,
+        .hero-description,
+        .scroll-cue {
+          opacity: 1;
+          transform: none;
+        }
+        .marquee-track {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="preloader" aria-label="Memuat portofolio">
+      <div class="loader-content">
+        <p class="loader-brand">Rifki Hikmali Yusup</p>
+        <p class="loader-count">
+          <span id="load-number">0</span><span>%</span>
+        </p>
+      </div>
+    </div>
+    <header class="site-header">
+      <nav class="nav" aria-label="Navigasi utama">
+        <a class="brand" href="#top" aria-label="Rifki Hikmali Yusup, beranda"
+          ><span class="monogram">RY</span
+          ><span class="brand-name">Rifki Hikmali Yusup</span></a
+        >
+        <ul class="desktop-nav">
+          <li><a href="#story">Tentang</a></li>
+          <li><a href="#ventures">Proyek</a></li>
+          <li><a href="#impact">Keahlian</a></li>
+          <li><a href="#contact">Kontak</a></li>
+        </ul>
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Buka navigasi"
+          aria-expanded="false"
+          aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+      <nav class="mobile-menu" id="mobile-menu" aria-label="Navigasi seluler">
+        <ul>
+          <li><a href="#story" style="--delay: 120ms">Tentang</a></li>
+          <li><a href="#ventures" style="--delay: 180ms">Proyek</a></li>
+          <li><a href="#impact" style="--delay: 240ms">Keahlian</a></li>
+          <li><a href="#contact" style="--delay: 300ms">Kontak</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="hero" id="top" aria-label="Beranda">
+        <div class="hero-top">
+          <h2
+            class="hero-roles"
+            aria-label="Web Developer, Problem Solver, Lifelong Learner">
+            <span><i style="--delay: 0ms">Web Developer</i></span
+            ><span><i style="--delay: 80ms">Problem Solver</i></span
+            ><span><i style="--delay: 160ms">Lifelong Learner</i></span>
+          </h2>
+          <p class="hero-description">
+            Saya membangun pengalaman digital yang bermanfaat. Dari baris kode
+            pertama hingga produk yang membantu pekerjaan sehari-hari.
+          </p>
+        </div>
+        <h1 class="hero-name">
+          <span class="hero-name-line" data-text="Rifki"
+            ><span>Rifki</span></span
+          ><span class="hero-name-line" data-text="Yusup"
+            ><span>Yusup</span></span
+          >
+        </h1>
+        <img
+          class="hero-portrait"
+          src="img/iki.png"
+          alt="Rifki Hikmali Yusup" />
+        <div class="hero-gradient"></div>
+        <a class="scroll-cue" href="#story">Gulir untuk masuk</a>
+      </section>
+      <section class="marquee" aria-label="Prinsip kerja">
+        <div class="marquee-track">
+          <div class="marquee-group">
+            <span class="marquee-word">Belajar Konsisten</span
+            ><i class="marquee-dot"></i
+            ><span class="marquee-word">Bangun Dengan Tujuan</span
+            ><i class="marquee-dot"></i
+            ><span class="marquee-word">Pecahkan Masalah</span
+            ><i class="marquee-dot"></i
+            ><span class="marquee-word">Terus Berkembang</span
+            ><i class="marquee-dot"></i
+            ><span class="marquee-word">Belajar Konsisten</span
+            ><i class="marquee-dot"></i
+            ><span class="marquee-word">Bangun Dengan Tujuan</span
+            ><i class="marquee-dot"></i
+            ><span class="marquee-word">Pecahkan Masalah</span
+            ><i class="marquee-dot"></i
+            ><span class="marquee-word">Terus Berkembang</span
+            ><i class="marquee-dot"></i>
+          </div>
+          <div class="marquee-group" aria-hidden="true">
+            <span class="marquee-word">Belajar Konsisten</span
+            ><i class="marquee-dot"></i
+            ><span class="marquee-word">Bangun Dengan Tujuan</span
+            ><i class="marquee-dot"></i
+            ><span class="marquee-word">Pecahkan Masalah</span
+            ><i class="marquee-dot"></i
+            ><span class="marquee-word">Terus Berkembang</span
+            ><i class="marquee-dot"></i
+            ><span class="marquee-word">Belajar Konsisten</span
+            ><i class="marquee-dot"></i
+            ><span class="marquee-word">Bangun Dengan Tujuan</span
+            ><i class="marquee-dot"></i
+            ><span class="marquee-word">Pecahkan Masalah</span
+            ><i class="marquee-dot"></i
+            ><span class="marquee-word">Terus Berkembang</span
+            ><i class="marquee-dot"></i>
+          </div>
+        </div>
+      </section>
+      <section class="section-shell" id="story">
+        <div class="story-grid">
+          <div>
+            <p class="eyebrow reveal">Tentang Saya</p>
+            <h2 class="section-title reveal" data-lines="true">
+              Berawal dari rasa ingin tahu, tumbuh lewat karya.
+            </h2>
+            <p class="story-copy reveal">
+              Lulusan STMIK Mardira Indonesea jurusan Teknik Informatika Sistem
+              Informasi yang antusias pada teknologi informasi dan pengembangan
+              perangkat lunak. Saya senang mengubah ide menjadi proyek yang bisa
+              digunakan, memahami konsep pemrograman, dan terus mengasah
+              kemampuan melalui proses belajar. Terbiasa bekerja dalam tim dan
+              terbuka untuk tantangan baru di dunia teknologi.
+            </p>
+          </div>
+          <ol class="principles">
+            <li class="principle reveal" style="--delay: 0ms">
+              <span class="principle-number">01</span>
+              <div>
+                <h3>Belajar lewat praktik</h3>
+                <p>
+                  Memperkuat pemahaman dengan membuat proyek nyata dan
+                  mengevaluasi hasilnya.
+                </p>
+              </div>
+            </li>
+            <li class="principle reveal" style="--delay: 90ms">
+              <span class="principle-number">02</span>
+              <div>
+                <h3>Utamakan pengalaman pengguna</h3>
+                <p>
+                  Merancang alur yang jelas dan mudah digunakan sebelum menambah
+                  kerumitan.
+                </p>
+              </div>
+            </li>
+            <li class="principle reveal" style="--delay: 180ms">
+              <span class="principle-number">03</span>
+              <div>
+                <h3>Terus berkembang</h3>
+                <p>
+                  Mempelajari alat dan pendekatan baru untuk menyelesaikan
+                  masalah dengan lebih baik.
+                </p>
+              </div>
+            </li>
+            <li class="principle reveal" style="--delay: 270ms">
+              <span class="principle-number">04</span>
+              <div>
+                <h3>Kolaborasi dengan terbuka</h3>
+                <p>
+                  Mendengarkan perspektif tim dan berkomunikasi jelas di setiap
+                  proses pengerjaan.
+                </p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+      <section class="section-shell" id="ventures">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow reveal">Karya Pilihan</p>
+            <h2 class="section-title reveal" data-lines="true">
+              Proyek yang menjawab kebutuhan nyata.
+            </h2>
+          </div>
+          <p class="section-count reveal">03 / Proyek</p>
+        </div>
+        <ul class="venture-grid">
+          <li class="venture-card reveal" style="--delay: 0ms">
+            <article>
+              <div class="project-image">
+                <img
+                  src="img/perpus.png"
+                  alt="Tampilan sistem perpustakaan berbasis web"
+                  loading="lazy" />
+              </div>
+              <div class="venture-meta">
+                <div>
+                  <h3>Sistem Perpustakaan</h3>
+                  <p>
+                    Katalog daring dan pencarian buku untuk membantu pengguna
+                    menjelajahi koleksi dengan lebih efektif.
+                  </p>
+                </div>
+                <span class="venture-year">Web App</span>
+              </div>
+              <p class="venture-category">Informasi · Pencarian</p>
+            </article>
+          </li>
+          <!-- <li class="venture-card reveal" style="--delay: 120ms">
+            <article>
+              <div class="project-image">
+                <img
+                  src="img/kasir.png"
+                  alt="Tampilan aplikasi kasir restoran"
+                  loading="lazy" />
+              </div>
+              <div class="venture-meta">
+                <div>
+                  <h3>Sistem Kasir</h3>
+                  <p>
+                    Aplikasi kasir restoran dengan pemilihan menu intuitif dan
+                    alur pembayaran yang praktis.
+                  </p>
+                </div>
+                <span class="venture-year">Web App</span>
+              </div>
+              <p class="venture-category">Restoran · Transaksi</p>
+            </article>
+          </li>
+          <li class="venture-card reveal" style="--delay: 0ms">
+            <article>
+              <div class="project-image">
+                <img
+                  src="img/penjualan.png"
+                  alt="Tampilan proyek e-commerce sederhana"
+                  loading="lazy" />
+              </div>
+              <div class="venture-meta">
+                <div>
+                  <h3>E-commerce</h3>
+                  <p>
+                    Pengalaman belanja daring yang intuitif dengan perhatian
+                    pada performa dan desain responsif.
+                  </p>
+                </div>
+                <span class="venture-year">Web App</span>
+              </div>
+              <p class="venture-category">Belanja · Responsif</p>
+            </article>
+          </li> -->
+        </ul>
+      </section>
+      <section class="section-shell" id="impact">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow reveal">Teknologi Yang Digunakan</p>
+            <h2 class="section-title reveal">
+              Peralatan untuk mewujudkan ide.
+            </h2>
+          </div>
+        </div>
+        <ul class="skill-grid" aria-label="Daftar keahlian">
+          <li class="skill-item reveal">
+            <img src="img/html.png" alt="" loading="lazy" /><span>HTML</span>
+          </li>
+          <li class="skill-item reveal" style="--delay: 80ms">
+            <img src="img/css.png" alt="" loading="lazy" /><span>CSS</span>
+          </li>
+          <li class="skill-item reveal" style="--delay: 160ms">
+            <img src="img/php.png" alt="" loading="lazy" /><span>PHP</span>
+          </li>
+          <li class="skill-item reveal" style="--delay: 240ms">
+            <img src="img/bootstrap.png" alt="" loading="lazy" /><span
+              >Bootstrap</span
+            >
+          </li>
+          <li class="skill-item reveal" style="--delay: 320ms">
+            <img src="img/javascript.png" alt="" loading="lazy" /><span
+              >JavaScript</span
+            >
+          </li>
+          <li class="skill-item reveal" style="--delay: 400ms">
+            <img src="img/reactjs.png" alt="" loading="lazy" /><span
+              >React.js</span
+            >
+          </li>
+        </ul>
+      </section>
+      <section class="section-shell" id="voices">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow reveal">Fokus Saya</p>
+            <h2 class="section-title reveal">Cara saya mendekati pekerjaan.</h2>
+          </div>
+        </div>
+        <div class="voices-grid">
+          <ul class="capability-list">
+            <li>
+              <button
+                class="capability active"
+                type="button"
+                data-capability="0"
+                aria-pressed="true">
+                <span class="capability-index">01</span
+                ><span
+                  ><span class="capability-title">Pengembangan Web</span
+                  ><span class="capability-note"
+                    >HTML · CSS · JavaScript</span
+                  ></span
+                >
+              </button>
+            </li>
+            <li>
+              <button
+                class="capability"
+                type="button"
+                data-capability="1"
+                aria-pressed="false">
+                <span class="capability-index">02</span
+                ><span
+                  ><span class="capability-title">Antarmuka Responsif</span
+                  ><span class="capability-note"
+                    >Bootstrap · React.js</span
+                  ></span
+                >
+              </button>
+            </li>
+            <li>
+              <button
+                class="capability"
+                type="button"
+                data-capability="2"
+                aria-pressed="false">
+                <span class="capability-index">03</span
+                ><span
+                  ><span class="capability-title">Aplikasi Berbasis Data</span
+                  ><span class="capability-note">PHP · MySQL</span></span
+                >
+              </button>
+            </li>
+          </ul>
+          <div class="capability-detail reveal">
+            <p id="capability-quote">
+              Membangun situs web yang terasa jelas, cepat, dan nyaman digunakan
+              di berbagai ukuran layar.
+            </p>
+            <small id="capability-caption"
+              >Bidang yang sedang saya tekuni</small
+            >
+          </div>
+        </div>
+      </section>
+      <footer class="contact-footer" id="contact">
+        <p class="eyebrow reveal">Mari Terhubung</p>
+        <h2 class="contact-title reveal" data-lines="true">
+          Punya ide menarik? Mari wujudkan bersama.
+        </h2>
+        <p class="contact-copy reveal">
+          Saya terbuka untuk percakapan, kolaborasi, dan kesempatan baru di
+          dunia teknologi. Saya senang mendengar dari Anda.
+        </p>
+        <a class="email-link reveal" href="mailto:hikmaly123@gmail.com"
+          >hikmaly123@gmail.com <span aria-hidden="true">↗</span></a
+        >
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <p class="signature">Rifki Yusup</p>
+            <p class="footer-tagline">Dirancang dengan rasa ingin tahu.</p>
+          </div>
+          <nav class="footer-social" aria-label="Media sosial">
+            <ul class="social-list">
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/rifki-yusup-87949b308/"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  >LinkedIn</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/rifkihy_/"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  >Instagram</a
+                >
+              </li>
+              <li><a href="mailto:hikmaly123@gmail.com">Email</a></li>
+            </ul>
+          </nav>
+          <div class="footer-copy">
+            <p class="copyright">
+              © <span id="year">2026</span> Rifki Hikmali Yusup. Hak cipta
+              dilindungi.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </main>
+    <script type="importmap">
+      {
+        "imports": {
+          "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.19/dist/lenis.mjs"
+        }
+      }
+    </script>
+    <script type="module">
+      const root = document.documentElement;
+      const applyAdaptiveGrid = () => {
+        const width = window.innerWidth;
+        const reduction = ((1920 - width) / 1920) * 100 * 0.6666;
+        const size = 16 - (16 * reduction) / 100;
+        if (size > 16) root.style.fontSize = `${size}px`;
+        else root.style.removeProperty("font-size");
+      };
+      applyAdaptiveGrid();
+      addEventListener("resize", applyAdaptiveGrid);
+
+      let lenis;
+      try {
+        const module = await import("lenis");
+        lenis = new module.default({ smoothWheel: true });
+        window.lenis = lenis;
+        const raf = (time) => {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        };
+        requestAnimationFrame(raf);
+      } catch (error) {
+        document.documentElement.classList.add("native-scroll");
+      }
+
+      const reducedMotion = matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      const preloader = document.querySelector(".preloader");
+      const hero = document.querySelector(".hero");
+      const number = document.querySelector("#load-number");
+      const revealHero = () => {
+        document
+          .querySelectorAll(".hero-name-line")
+          .forEach((line, lineIndex) => {
+            const text = line.dataset.text;
+            line.replaceChildren(
+              ...[...text].map((letter, index) => {
+                const span = document.createElement("span");
+                span.textContent = letter === " " ? "\u00a0" : letter;
+                span.style.setProperty(
+                  "--delay",
+                  `${2500 + lineIndex * 240 + index * 52}ms`,
+                );
+                return span;
+              }),
+            );
+          });
+        hero.querySelectorAll(".hero-roles i").forEach((item) => {
+          item.style.transitionDelay = `${2700 + Number.parseInt(item.parentElement.style.getPropertyValue("--delay") || "0", 10)}ms`;
+        });
+        hero.querySelector(".hero-description").style.transitionDelay =
+          "2900ms";
+        hero.querySelector(".scroll-cue").style.transitionDelay = "3400ms";
+        hero.classList.add("started");
+      };
+      if (reducedMotion) {
+        preloader.remove();
+        hero.classList.add("started");
+        document.querySelectorAll(".hero-name-line").forEach((line) => {
+          line.querySelector("span").style.transform = "none";
+          line.querySelector("span").style.opacity = "1";
+        });
+      } else {
+        if (lenis) lenis.stop();
+        scrollTo(0, 0);
+        const startedAt = performance.now();
+        const countFrame = (now) => {
+          const progress = Math.min((now - startedAt) / 2000, 1);
+          number.textContent = String(Math.round(progress * 100));
+          if (progress < 1) requestAnimationFrame(countFrame);
+          else {
+            preloader.classList.add("fading");
+            setTimeout(() => {
+              preloader.classList.add("done");
+              setTimeout(() => lenis?.start(), 650);
+            }, 500);
+          }
+        };
+        requestAnimationFrame(countFrame);
+        revealHero();
+      }
+
+      const prepareHeading = (heading) => {
+        const words = heading.textContent.trim().split(/\s+/);
+        const lines = [];
+        let line = "";
+        const width = window.innerWidth;
+        const maxChars = width < 640 ? 19 : width < 1024 ? 24 : 30;
+        words.forEach((word) => {
+          if (line && `${line} ${word}`.length > maxChars) {
+            lines.push(line);
+            line = word;
+          } else line = line ? `${line} ${word}` : word;
+        });
+        if (line) lines.push(line);
+        heading.replaceChildren(
+          ...lines.map((text, index) => {
+            const mask = document.createElement("span");
+            mask.className = "line-mask";
+            const inner = document.createElement("span");
+            inner.textContent = text;
+            inner.style.setProperty("--delay", `${index * 90}ms`);
+            mask.append(inner);
+            return mask;
+          }),
+        );
+      };
+      document
+        .querySelectorAll(".section-title, .contact-title")
+        .forEach(prepareHeading);
+      if (!reducedMotion) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("in-view");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0 },
+        );
+        document
+          .querySelectorAll(".reveal")
+          .forEach((element) => observer.observe(element));
+      } else {
+        document
+          .querySelectorAll(".reveal")
+          .forEach((element) => element.classList.add("in-view"));
+      }
+
+      const toggle = document.querySelector(".menu-toggle");
+      const mobileMenu = document.querySelector(".mobile-menu");
+      const setMenu = (open) => {
+        toggle.setAttribute("aria-expanded", String(open));
+        toggle.setAttribute(
+          "aria-label",
+          open ? "Tutup navigasi" : "Buka navigasi",
+        );
+        mobileMenu.classList.toggle("open", open);
+        document.body.style.overflow = open ? "hidden" : "";
+        if (open) lenis?.stop();
+        else lenis?.start();
+      };
+      toggle.addEventListener("click", () =>
+        setMenu(toggle.getAttribute("aria-expanded") !== "true"),
+      );
+      mobileMenu
+        .querySelectorAll("a")
+        .forEach((link) =>
+          link.addEventListener("click", () => setMenu(false)),
+        );
+      document.querySelectorAll('a[href^="#"]').forEach((link) =>
+        link.addEventListener("click", (event) => {
+          const target = document.querySelector(link.getAttribute("href"));
+          if (!target) return;
+          event.preventDefault();
+          if (lenis) lenis.scrollTo(target);
+          else
+            target.scrollIntoView({
+              behavior: reducedMotion ? "auto" : "smooth",
+            });
+        }),
+      );
+
+      const details = [
+        "Membangun situs web yang terasa jelas, cepat, dan nyaman digunakan di berbagai ukuran layar.",
+        "Menyusun tata letak yang beradaptasi dengan baik pada perangkat desktop maupun ponsel.",
+        "Mengembangkan alur aplikasi web yang menghubungkan antarmuka dengan pengelolaan data.",
+      ];
+      document.querySelectorAll(".capability").forEach((button) => {
+        const activate = () => {
+          document.querySelectorAll(".capability").forEach((item) => {
+            const active = item === button;
+            item.classList.toggle("active", active);
+            item.setAttribute("aria-pressed", String(active));
+          });
+          const index = Number(button.dataset.capability);
+          const quote = document.querySelector("#capability-quote");
+          quote.animate(
+            [
+              { opacity: 0, transform: "translateY(12px)" },
+              { opacity: 1, transform: "translateY(0)" },
+            ],
+            { duration: 420, easing: "cubic-bezier(.165,.84,.44,1)" },
+          );
+          quote.textContent = details[index];
+        };
+        button.addEventListener("mouseenter", activate);
+        button.addEventListener("focus", activate);
+        button.addEventListener("click", activate);
+      });
+      document.querySelector("#year").textContent = String(
+        new Date().getFullYear(),
+      );
+    </script>
+  </body>
+</html>
